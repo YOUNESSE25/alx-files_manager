@@ -4,7 +4,7 @@ import sha1 from 'sha1';
 import { ObjectID } from 'mongodb';
 import Queue from 'bull';
 
-const User_Queue = new Queue('userQueue', 'redis://127.0.0.1:6379');
+const userQueue = new Queue('userQueue', 'redis://127.0.0.1:6379');
 
 class UsersController {
   static postNew(request, response) {
@@ -33,7 +33,7 @@ class UsersController {
           },
         ).then((result) => {
           response.status(201).json({ id: result.insertedId, email });
-          User_Queue.add({ userId: result.insertedId });
+          userQueue.add({ userId: result.insertedId });
         }).catch((error) => console.log(error));
       }
     });
