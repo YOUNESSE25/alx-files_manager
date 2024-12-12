@@ -1,5 +1,5 @@
-import { ObjectID } from 'mongodb';
 import sha1 from 'sha1';
+import { ObjectID } from 'mongodb';
 import Queue from 'bull';
 import dbClient from '../utils/db';
 import redisClient from '../utils/redis';
